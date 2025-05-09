@@ -1,0 +1,7 @@
+Flask
+Flask-SQLAlchemy
+Flask-Login
+flask-mailman
+flask-migrate
+sqlalchemy
+werkzeug
