@@ -1,0 +1,1 @@
+/admin/view_quizzes/
