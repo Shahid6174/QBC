@@ -6,6 +6,7 @@ from .models import User
 from flask_login import login_user, current_user   
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db  
+import os
 
 mail = Mail()
 
@@ -73,7 +74,7 @@ def signup():
                 subject='Email Verification',
                 body=f'Your verification code is: {verification_code}',
                 to=[email],
-                from_email='qbc_admin@fastmail.com'
+                from_email=os.environ.get('ADMIN_EMAIL')
             )
             msg.send()
 
@@ -117,7 +118,7 @@ def resend_verification_code():
             subject='Resend: Email Verification',
             body=f'Your new verification code is: {new_code}',
             to=[email],
-            from_email='qbc_admin@fastmail.com'
+            from_email=os.environ.get('ADMIN_EMAIL')
         )
         msg.send()
 

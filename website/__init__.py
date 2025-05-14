@@ -16,7 +16,7 @@ load_dotenv()
 from .models import User
 
 DB_NAME = os.environ.get('SQLITE_DB', 'qbc.db') 
-ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'qbc_admin@fastmail.com') 
+ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'qbc_admin@gmail.com') 
 ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', '342b6h558h6z2w57')
 SECRET_KEY = os.environ.get('SECRET_KEY', 'shahid')
 
@@ -54,10 +54,10 @@ def create_app():
     app.config['SECRET_KEY'] = SECRET_KEY
     app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{DB_NAME}"
     
-    app.config['MAIL_SERVER'] = 'smtp.fastmail.com'
+    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 465
     app.config['MAIL_USERNAME'] = ADMIN_EMAIL
-    app.config['MAIL_PASSWORD'] = ADMIN_EMAIL
+    app.config['MAIL_PASSWORD'] = ADMIN_PASSWORD
     app.config['MAIL_USE_TLS'] = False
     app.config['MAIL_USE_SSL'] = True
 
