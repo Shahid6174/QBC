@@ -1,52 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Admin Panel{% endblock %}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <style>
+        :root {
+            --primary-bg: #e6e6fa;
+            --primary-text: #4b0082;
+            --navbar-bg: #d8bfd8;
+            --navbar-border: #dda0dd;
+            --container-bg: #f3e5f5;
+            --alert-bg: #dda0dd;
+            --toggle-bg: #ffffff;
+            --toggle-shadow: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-bs-theme="dark"] {
+            --primary-bg: #1a1a2e;
+            --primary-text: #e6e6fa;
+            --navbar-bg: #16213e;
+            --navbar-border: #0f3460;
+            --container-bg: #0f3460;
+            --alert-bg: #533483;
+            --toggle-bg: #2a2a4a;
+            --toggle-shadow: rgba(255, 255, 255, 0.1);
+        }
+
         body {
-            background-color: #e6e6fa;
-            /* Light lavender */
-            color: #4b0082;
-            /* Medium purple */
+            background-color: var(--primary-bg);
+            color: var(--primary-text);
+            transition: all 0.5s ease;
         }
 
         .navbar {
-            background-color: #d8bfd8 !important;
-            /* Thistle */
-            border-bottom: 2px solid #dda0dd;
-            /* Plum */
+            background-color: var(--navbar-bg) !important;
+            border-bottom: 2px solid var(--navbar-border);
+            transition: all 0.5s ease;
         }
 
         .navbar-brand,
         .nav-link {
-            color: #4b0082 !important;
-            /* Indigo */
+            color: var(--primary-text) !important;
             font-weight: 500;
+            transition: color 0.5s ease;
         }
 
         .nav-link:hover {
             color: #8a2be2 !important;
-            /* Blue Violet */
         }
 
         .container {
-            background: #f3e5f5;
-            /* Lavender blush */
+            background: var(--container-bg);
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
         }
 
         .alert {
             border-radius: 6px;
-            background-color: #dda0dd;
-            /* Plum */
-            color: #4b0082;
-            /* Medium purple */
+            background-color: var(--alert-bg);
+            color: var(--primary-text);
+            transition: all 0.5s ease;
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+            padding: 0.8rem;
+            border-radius: 50%;
+            background: var(--toggle-bg);
+            box-shadow: 0 2px 5px var(--toggle-shadow);
+            transition: all 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            margin-left: 1rem;
+        }
+
+        .theme-toggle i {
+            font-size: 1.5rem;
+            color: var(--primary-text);
+            transition: all 0.5s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px var(--toggle-shadow);
+        }
+
+        .theme-toggle:active {
+            transform: scale(0.95);
+        }
+
+        /* Add animation for theme transition */
+        @keyframes themeTransition {
+            0% { opacity: 0.8; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        body.theme-transitioning {
+            animation: themeTransition 0.5s ease;
         }
     </style>
 </head>
@@ -59,12 +119,16 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{{ url_for('views.admin_dashboard') }}">Dashboard</a>
-                    </li>
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('views.admin_dashboard') }}">Dashboard</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('views.admin_about') }}">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('views.admin_analytics') }}">Analytics</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.logout') }}">Logout</a></li>
+                    <li class="nav-item">
+                        <span class="theme-toggle" id="themeToggle" title="Toggle Dark/Light Mode">
+                            <i class="bi bi-sun-fill"></i>
+                        </span>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -82,6 +146,49 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const icon = themeToggle.querySelector('i');
+        const body = document.body;
+
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-bs-theme', savedTheme);
+        updateIcon(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            // Add transition animation
+            body.classList.add('theme-transitioning');
+            
+            // Update theme
+            html.setAttribute('data-bs-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+
+            // Remove transition class after animation
+            setTimeout(() => {
+                body.classList.remove('theme-transitioning');
+            }, 500);
+        });
+
+        function updateIcon(theme) {
+            icon.className = theme === 'light' ? 'bi bi-sun-fill' : 'bi bi-moon-fill';
+        }
+
+        // Check for system preference
+        if (!localStorage.getItem('theme')) {
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const initialTheme = prefersDark ? 'dark' : 'light';
+            html.setAttribute('data-bs-theme', initialTheme);
+            localStorage.setItem('theme', initialTheme);
+            updateIcon(initialTheme);
+        }
+    </script>
 </body>
 
 </html>
