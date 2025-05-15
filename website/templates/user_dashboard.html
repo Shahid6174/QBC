@@ -1,33 +1,33 @@
 {% extends "user_base.html" %}
 
-{% block title %}Dashboard{% endblock %}
+{% block title %}{{ _('Dashboard') }}{% endblock %}
 
 {% block content %}
 <div class="container">
-    <h2>Welcome, {{ current_user.full_name }}!</h2>
-    <p>Here are the available quizzes based on your qualification:</p>
+    <h2>{{ _('Welcome') }}, {{ current_user.full_name }}!</h2>
+    <p>{{ _('Here are the available quizzes based on your qualification:') }}</p>
 
     <ul class="list-group">
         {% for quiz in quizzes %}
         <li class="list-group-item d-flex justify-content-between align-items-center">
             <div>
-                <strong>Quiz {{ loop.index }}:</strong> {{ quiz.chapter_name }} ({{ quiz.subject_name }})
+                <strong>{{ _('Quiz') }} {{ loop.index }}:</strong> {{ quiz.chapter_name }} ({{ quiz.subject_name }})
                 <br>
                 {% if quiz.latest_score is not none %}
-                <span class="text-success">Score: {{ quiz.latest_score }}/{{ quiz.total_questions }}</span>
+                <span class="text-success">{{ _('Score') }}: {{ quiz.latest_score }}/{{ quiz.total_questions }}</span>
                 {% else %}
-                <span class="text-muted">Not attempted yet</span>
+                <span class="text-muted">{{ _('Not attempted yet') }}</span>
                 {% endif %}
             </div>
             <div>
-                <a href="{{ url_for('views.start_quiz', quiz_id=quiz.id) }}" class="btn btn-primary">Start Quiz</a>
+                <a href="{{ url_for('views.start_quiz', quiz_id=quiz.id) }}" class="btn btn-primary">{{ _('Start Quiz') }}</a>
                 {% if quiz.latest_score is not none %}
-                <a href="{{ url_for('views.view_performance', quiz_id=quiz.id) }}" class="btn btn-info">View Performance</a>
+                <a href="{{ url_for('views.view_performance', quiz_id=quiz.id) }}" class="btn btn-info">{{ _('View Performance') }}</a>
                 {% endif %}
             </div>
         </li>
         {% else %}
-        <li class="list-group-item">No quizzes available.</li>
+        <li class="list-group-item">{{ _('No quizzes available.') }}</li>
         {% endfor %}
     </ul>
 </div>

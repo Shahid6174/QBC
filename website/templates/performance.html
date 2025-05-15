@@ -1,20 +1,20 @@
 {% extends "user_base.html" %}
 
 {% block content %}
-<h2>Quiz Performance</h2>
-<p><strong>Score:</strong> {{ score.total_score }}</p>
+<h2>{{ _('Quiz Performance') }}</h2>
+<p><strong>{{ _('Score') }}:</strong> {{ score.total_score }}</p>
 
 <table class="table table-bordered">
     <thead class="table-dark">
         <tr>
-            <th>Question</th>
-            <th>Your Answer</th>
-            <th>Correct Answer</th>
+            <th>{{ _('Question') }}</th>
+            <th>{{ _('Your Answer') }}</th>
+            <th>{{ _('Correct Answer') }}</th>
         </tr>
     </thead>
     <tbody>
         {% for question in questions %}
-        {% set user_answer = user_answers.get(question.id, "Not Answered") %}
+        {% set user_answer = user_answers.get(question.id, _("Not Answered")) %}
         <tr>
             <td>{{ question.question_text }}</td>
             <td class="{% if user_answer == question.correct_option %}text-success{% else %}text-danger{% endif %}">
@@ -26,5 +26,5 @@
     </tbody>
 </table>
 
-<a href="{{ url_for('views.user_dashboard') }}" class="btn btn-primary">Back to Dashboard</a>
+<a href="{{ url_for('views.user_dashboard') }}" class="btn btn-primary">{{ _('Back to Dashboard') }}</a>
 {% endblock %}

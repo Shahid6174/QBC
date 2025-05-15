@@ -1,0 +1,637 @@
+msgid ""
+msgstr ""
+"Project-Id-Version:  QBC\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-05-15 09:28+0300\n"
+"PO-Revision-Date: 2024-03-15 12:00+0000\n"
+"Last-Translator: \n"
+"Language: sw\n"
+"Language-Team: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: venv/Lib/site-packages/click/_termui_impl.py:600
+#, python-brace-format
+msgid "{editor}: Editing failed"
+msgstr ""
+
+#: venv/Lib/site-packages/click/_termui_impl.py:604
+#, python-brace-format
+msgid "{editor}: Editing failed: {e}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:1084
+#: venv/Lib/site-packages/click/core.py:1121
+#, python-brace-format
+msgid "{text} {deprecated_message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:1140
+msgid "Options"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:1202
+#, python-brace-format
+msgid "Got unexpected extra argument ({args})"
+msgid_plural "Got unexpected extra arguments ({args})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/Lib/site-packages/click/core.py:1221
+#, python-brace-format
+msgid "DeprecationWarning: The command {name!r} is deprecated.{extra_message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:1405
+#, fuzzy
+msgid "Aborted!"
+msgstr "Kuhusu"
+
+#: venv/Lib/site-packages/click/core.py:1779
+msgid "Commands"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:1810
+msgid "Missing command."
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:1888
+#, python-brace-format
+msgid "No such command {name!r}."
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:2303
+msgid "Value must be an iterable."
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:2324
+#, python-brace-format
+msgid "Takes {nargs} values but 1 was given."
+msgid_plural "Takes {nargs} values but {len} were given."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/Lib/site-packages/click/core.py:2404
+#, python-brace-format
+msgid ""
+"DeprecationWarning: The {param_type} {name!r} is "
+"deprecated.{extra_message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:2806
+#, python-brace-format
+msgid "env var: {var}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:2809
+#, python-brace-format
+msgid "default: {default}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:2813
+msgid "required"
+msgstr ""
+
+#: venv/Lib/site-packages/click/core.py:2869
+msgid "(dynamic)"
+msgstr ""
+
+#: venv/Lib/site-packages/click/decorators.py:465
+#, python-format
+msgid "%(prog)s, version %(version)s"
+msgstr ""
+
+#: venv/Lib/site-packages/click/decorators.py:522
+msgid "Show the version and exit."
+msgstr ""
+
+#: venv/Lib/site-packages/click/decorators.py:548
+msgid "Show this message and exit."
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:50
+#: venv/Lib/site-packages/click/exceptions.py:89
+#, python-brace-format
+msgid "Error: {message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:81
+#, python-brace-format
+msgid "Try '{command} {option}' for help."
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:130
+#, python-brace-format
+msgid "Invalid value: {message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:132
+#, python-brace-format
+msgid "Invalid value for {param_hint}: {message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:190
+msgid "Missing argument"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:192
+msgid "Missing option"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:194
+msgid "Missing parameter"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:196
+#, python-brace-format
+msgid "Missing {param_type}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:203
+#, python-brace-format
+msgid "Missing parameter: {param_name}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:223
+#, python-brace-format
+msgid "No such option: {name}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:235
+#, python-brace-format
+msgid "Did you mean {possibility}?"
+msgid_plural "(Possible options: {possibilities})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/Lib/site-packages/click/exceptions.py:282
+msgid "unknown error"
+msgstr ""
+
+#: venv/Lib/site-packages/click/exceptions.py:289
+#, python-brace-format
+msgid "Could not open file {filename!r}: {message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/formatting.py:156
+msgid "Usage:"
+msgstr ""
+
+#: venv/Lib/site-packages/click/parser.py:200
+#, python-brace-format
+msgid "Argument {name!r} takes {nargs} values."
+msgstr ""
+
+#: venv/Lib/site-packages/click/parser.py:383
+#, python-brace-format
+msgid "Option {name!r} does not take a value."
+msgstr ""
+
+#: venv/Lib/site-packages/click/parser.py:444
+#, python-brace-format
+msgid "Option {name!r} requires an argument."
+msgid_plural "Option {name!r} requires {nargs} arguments."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/Lib/site-packages/click/shell_completion.py:326
+msgid "Shell completion is not supported for Bash versions older than 4.4."
+msgstr ""
+
+#: venv/Lib/site-packages/click/shell_completion.py:333
+msgid "Couldn't detect Bash version, shell completion is not supported."
+msgstr ""
+
+#: venv/Lib/site-packages/click/termui.py:162
+msgid "Repeat for confirmation"
+msgstr ""
+
+#: venv/Lib/site-packages/click/termui.py:178
+msgid "Error: The value you entered was invalid."
+msgstr ""
+
+#: venv/Lib/site-packages/click/termui.py:180
+#, python-brace-format
+msgid "Error: {e.message}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/termui.py:191
+msgid "Error: The two entered values do not match."
+msgstr ""
+
+#: venv/Lib/site-packages/click/termui.py:247
+msgid "Error: invalid input"
+msgstr ""
+
+#: venv/Lib/site-packages/click/termui.py:866
+msgid "Press any key to continue..."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:332
+#, python-brace-format
+msgid ""
+"Choose from:\n"
+"\t{choices}"
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:369
+#, python-brace-format
+msgid "{value!r} is not {choice}."
+msgid_plural "{value!r} is not one of {choices}."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/Lib/site-packages/click/types.py:460
+#, python-brace-format
+msgid "{value!r} does not match the format {format}."
+msgid_plural "{value!r} does not match the formats {formats}."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/Lib/site-packages/click/types.py:482
+#, python-brace-format
+msgid "{value!r} is not a valid {number_type}."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:538
+#, python-brace-format
+msgid "{value} is not in the range {range}."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:679
+#, python-brace-format
+msgid "{value!r} is not a valid boolean."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:703
+#, python-brace-format
+msgid "{value!r} is not a valid UUID."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:893
+msgid "file"
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:895
+msgid "directory"
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:897
+msgid "path"
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:944
+#, python-brace-format
+msgid "{name} {filename!r} does not exist."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:953
+#, python-brace-format
+msgid "{name} {filename!r} is a file."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:961
+#, python-brace-format
+msgid "{name} {filename!r} is a directory."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:970
+#, python-brace-format
+msgid "{name} {filename!r} is not readable."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:979
+#, python-brace-format
+msgid "{name} {filename!r} is not writable."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:988
+#, python-brace-format
+msgid "{name} {filename!r} is not executable."
+msgstr ""
+
+#: venv/Lib/site-packages/click/types.py:1055
+#, python-brace-format
+msgid "{len_type} values are required, but {len_value} was given."
+msgid_plural "{len_type} values are required, but {len_value} were given."
+msgstr[0] ""
+msgstr[1] ""
+
+#: website/templates/landing_page.html:6
+msgid "QBC - Quiz Based Challenge"
+msgstr "QBC - Changamoto ya Maswali"
+
+#: website/templates/landing_page.html:146
+msgid "Test your knowledge, compete with others, and become the ultimate quiz champion!"
+msgstr "Jipime maarifa yako, shindana na wengine, na uwe bingwa wa maswali!"
+
+#: website/templates/landing_page.html:148 website/templates/login.html:7
+#: website/templates/login.html:176 website/templates/login.html:210
+#: website/templates/sign-up.html:312
+msgid "Login"
+msgstr "Ingia"
+
+#: website/templates/landing_page.html:149 website/templates/sign-up.html:7
+#: website/templates/sign-up.html:233 website/templates/sign-up.html:310
+msgid "Sign Up"
+msgstr "Jisajili"
+
+#: website/templates/landing_page.html:155
+msgid "QBC: Quiz Based Challenge"
+msgstr "QBC: Changamoto ya Maswali"
+
+#: website/templates/login.html:188 website/templates/sign-up.html:250
+msgid "Email"
+msgstr "Barua pepe"
+
+#: website/templates/login.html:192 website/templates/sign-up.html:258
+msgid "Password"
+msgstr "Nywila"
+
+#: website/templates/login.html:204
+msgid "Remember me"
+msgstr "Nikumbuke"
+
+#: website/templates/login.html:208
+msgid "Forgot Password?"
+msgstr "Umesahau nywila?"
+
+#: website/templates/login.html:213
+msgid "Don't have an account?"
+msgstr "Huna akaunti?"
+
+#: website/templates/login.html:213
+msgid "Sign up"
+msgstr "Jisajili"
+
+#: website/templates/login.html:214
+msgid "Need to verify?"
+msgstr "Unahitaji kuthibitisha?"
+
+#: website/templates/login.html:214
+msgid "Resend Verification Code"
+msgstr "Tuma tena msimbo wa uthibitishaji"
+
+#: website/templates/sign-up.html:226
+msgid "Loading..."
+msgstr "Inapakia..."
+
+#: website/templates/sign-up.html:241
+msgid "Full Name"
+msgstr "Jina kamili"
+
+#: website/templates/sign-up.html:245
+msgid "Please enter a valid name (2-50 characters, letters and spaces only)."
+msgstr "Tafadhali weka jina halali (herufi 2-50, herufi na nafasi tu)."
+
+#: website/templates/sign-up.html:253
+msgid "Please enter a valid email address."
+msgstr "Tafadhali weka anwani ya barua pepe halali."
+
+#: website/templates/sign-up.html:269
+msgid "Password must be at least 8 characters long and contain letters, numbers, and special characters."
+msgstr "Nywila iwe na herufi 8 au zaidi na iwe na herufi, namba, na wahusika maalum."
+
+#: website/templates/sign-up.html:274
+msgid "Confirm Password"
+msgstr "Thibitisha nywila"
+
+#: website/templates/sign-up.html:283
+msgid "Passwords do not match."
+msgstr "Nywila hazifanani."
+
+#: website/templates/sign-up.html:288
+msgid "Level"
+msgstr "Kiwango"
+
+#: website/templates/sign-up.html:290
+msgid "Select your Level"
+msgstr "Chagua kiwango chako"
+
+#: website/templates/sign-up.html:291
+msgid "Foundation"
+msgstr "Msingi"
+
+#: website/templates/sign-up.html:292
+msgid "Diploma in DS"
+msgstr "Diploma katika DS"
+
+#: website/templates/sign-up.html:293
+msgid "Diploma in Programming"
+msgstr "Diploma katika Programu"
+
+#: website/templates/sign-up.html:294
+msgid "Bsc"
+msgstr "Shahada ya kwanza"
+
+#: website/templates/sign-up.html:295
+msgid "BS"
+msgstr "Shahada ya kwanza"
+
+#: website/templates/sign-up.html:298
+msgid "Please select your level."
+msgstr "Tafadhali chagua kiwango chako."
+
+#: website/templates/sign-up.html:303
+msgid "Date of Birth"
+msgstr "Tarehe ya kuzaliwa"
+
+#: website/templates/sign-up.html:306
+msgid "Please enter your date of birth."
+msgstr "Tafadhali weka tarehe yako ya kuzaliwa."
+
+#: website/templates/sign-up.html:312
+msgid "Already have an account?"
+msgstr "Una akaunti tayari?"
+
+#: website/templates/user_base.html:7
+msgid "User Dashboard"
+msgstr "Dashibodi ya Mtumiaji"
+
+#: website/templates/user_base.html:67
+msgid "Home"
+msgstr "Nyumbani"
+
+#: website/templates/user_base.html:68
+msgid "About"
+msgstr "Kuhusu"
+
+#: website/templates/user_base.html:69
+msgid "Analytics"
+msgstr "Uchambuzi"
+
+#: website/templates/user_base.html:85
+msgid "Logout"
+msgstr "Toka"
+
+#: website/templates/user_dashboard.html:4
+msgid "Dashboard"
+msgstr "Dashibodi"
+
+#: website/templates/user_dashboard.html:7
+msgid "Welcome"
+msgstr "Karibu"
+
+#: website/templates/user_dashboard.html:8
+msgid "Here are the available quizzes based on your qualification:"
+msgstr "Hapa kuna maswali yanayopatikana kulingana na sifa zako:"
+
+#: website/templates/user_dashboard.html:12
+msgid "Quiz"
+msgstr "Jaribio"
+
+#: website/templates/user_dashboard.html:15
+msgid "Score"
+msgstr "Alama"
+
+#: website/templates/user_dashboard.html:17
+msgid "Not attempted yet"
+msgstr "Hajajaribiwa bado"
+
+#: website/templates/user_dashboard.html:21
+msgid "Start Quiz"
+msgstr "Anza Jaribio"
+
+#: website/templates/user_dashboard.html:23
+msgid "View Performance"
+msgstr "Ona Utoaji"
+
+#: website/templates/user_dashboard.html:27
+msgid "No quizzes available."
+msgstr "Hakuna maswali yanayopatikana."
+
+#: website/templates/user_analytics.html:6
+msgid "User Analytics"
+msgstr "Uchambuzi wa Mtumiaji"
+
+#: website/templates/user_analytics.html:12
+msgid "Quizzes Attempted"
+msgstr "Maswali Yaliyojaribiwa"
+
+#: website/templates/user_analytics.html:20
+msgid "Average Score"
+msgstr "Alama za Wastani"
+
+#: website/templates/performance.html:4
+msgid "Quiz Performance"
+msgstr "Utoaji wa Jaribio"
+
+#: website/templates/performance.html:5
+msgid "Score"
+msgstr "Alama"
+
+#: website/templates/performance.html:9
+msgid "Question"
+msgstr "Swali"
+
+#: website/templates/performance.html:10
+msgid "Your Answer"
+msgstr "Jibu Lako"
+
+#: website/templates/performance.html:11
+msgid "Correct Answer"
+msgstr "Jibu Sahihi"
+
+#: website/templates/performance.html:14
+msgid "Not Answered"
+msgstr "Hajajibiwa"
+
+#: website/templates/performance.html:25
+msgid "Back to Dashboard"
+msgstr "Rudi kwenye Dashibodi"
+
+#: website/templates/user_about.html:4
+msgid "About - QBC App"
+msgstr "Kuhusu - Programu ya QBC"
+
+#: website/templates/user_about.html:7
+msgid "About QBC App"
+msgstr "Kuhusu Programu ya QBC"
+
+#: website/templates/user_about.html:8
+msgid "QBC (Quiz-Based Competency)"
+msgstr "QBC (Uwezo wa Maswali)"
+
+#: website/templates/user_about.html:8
+msgid "is a smart learning platform designed to help users strengthen their understanding of various subjects through structured quizzes. It enables effective exam preparation by organizing quizzes"
+msgstr "ni jukwaa la kujifunza linalowasaidia watumiaji kukuza uelewa wao wa masomo mbalimbali kupitia maswali yaliyopangwa. Inawezesha maandalizi bora ya mitihani kwa kupanga maswali"
+
+#: website/templates/user_about.html:8
+msgid "subject-wise and chapter-wise"
+msgstr "kwa masomo na sura"
+
+#: website/templates/user_about.html:8
+msgid "for better learning outcomes."
+msgstr "kwa matokeo bora ya kujifunza."
+
+#: website/templates/user_about.html:11
+msgid "Key Features:"
+msgstr "Vipengele Muhimu:"
+
+#: website/templates/user_about.html:13
+msgid "Subject-Wise Quizzes:"
+msgstr "Maswali ya Somo:"
+
+#: website/templates/user_about.html:13
+msgid "Practice questions categorized by subjects to build a strong foundation."
+msgstr "Jaribu maswali yaliyopangwa kwa masomo ili kujenga msingi imara."
+
+#: website/templates/user_about.html:14
+msgid "Chapter-Wise Quizzes:"
+msgstr "Maswali ya Sura:"
+
+#: website/templates/user_about.html:14
+msgid "Focus on individual chapters to master concepts step by step."
+msgstr "Zingatia sura za mtu binafsi ili kujua dhana kwa hatua kwa hatua."
+
+#: website/templates/user_about.html:15
+msgid "Question-ID Wise Search:"
+msgstr "Utafutaji wa Kitambulisho cha Swali:"
+
+#: website/templates/user_about.html:15
+msgid "Quickly locate and review specific questions."
+msgstr "Pata na kukagua maswali mahususi haraka."
+
+#: website/templates/user_about.html:16
+msgid "Cheat Sheet:"
+msgstr "Karatasi ya Kumbukumbu:"
+
+#: website/templates/user_about.html:16
+msgid "A curated collection of key concepts for quick revision."
+msgstr "Mkusanyiko wa dhana muhimu kwa marudio ya haraka."
+
+#: website/templates/user_about.html:17
+msgid "Performance Analytics:"
+msgstr "Uchambuzi wa Utoaji:"
+
+#: website/templates/user_about.html:17
+msgid "Get insights into strengths and areas for improvement."
+msgstr "Pata maarifa kuhusu nguvu na maeneo ya kuboresha."
+
+#: website/templates/user_about.html:18
+msgid "Real-Time Tracking:"
+msgstr "Ufuatiliaji wa Wakati Halisi:"
+
+#: website/templates/user_about.html:18
+msgid "Monitor progress and compete with peers."
+msgstr "Fuatilia maendeleo na shindana na wenzako."
+
+#: website/templates/user_about.html:22
+msgid "Why QBC?"
+msgstr "Kwa nini QBC?"
+
+#: website/templates/user_about.html:23
+msgid "QBC is designed to provide an interactive and efficient way of learning by breaking down complex topics into structured quizzes, making self-assessment easier and more effective."
+msgstr "QBC imeundwa kutoa njia ya kujifunza yenye ushirikiano na ufanisi kwa kugawanya mada ngumu kuwa maswali yaliyopangwa, na kufanya ukaguzi wa kibinafsi uwe rahisi na ufanisi zaidi."
+
+#: website/templates/user_about.html:26
+msgid "Contact Us:"
+msgstr "Wasiliana Nasi:"
+
+#: website/templates/user_about.html:27
+msgid "For support or feedback, reach us at:"
+msgstr "Kwa usaidizi au maoni, wasiliana nasi kwa:"
+

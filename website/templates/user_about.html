@@ -1,26 +1,26 @@
 {% extends "user_base.html" %}
 
-{% block title %}About - QBC App{% endblock %}
+{% block title %}{{ _('About - QBC App') }}{% endblock %}
 
 {% block content %}
 <div>
-    <h2 class="mb-4 text-primary">About QBC App</h2>
-    <p><strong>QBC (Quiz-Based Competency)</strong> is a smart learning platform designed to help users strengthen their understanding of various subjects through structured quizzes. It enables effective exam preparation by organizing quizzes <strong>subject-wise and chapter-wise</strong> for better learning outcomes.</p>
+    <h2 class="mb-4 text-primary">{{ _('About QBC App') }}</h2>
+    <p><strong>{{ _('QBC (Quiz-Based Competency)') }}</strong> {{ _('is a smart learning platform designed to help users strengthen their understanding of various subjects through structured quizzes. It enables effective exam preparation by organizing quizzes') }} <strong>{{ _('subject-wise and chapter-wise') }}</strong> {{ _('for better learning outcomes.') }}</p>
 
-    <h4 class="mt-4 text-primary">Key Features:</h4>
+    <h4 class="mt-4 text-primary">{{ _('Key Features:') }}</h4>
     <ul class="list-group mb-4">
-        <li class="list-group-item"><strong>Subject-Wise Quizzes:</strong> Practice questions categorized by subjects to build a strong foundation.</li>
-        <li class="list-group-item"><strong>Chapter-Wise Quizzes:</strong> Focus on individual chapters to master concepts step by step.</li>
-        <li class="list-group-item"><strong>Question-ID Wise Search:</strong> Quickly locate and review specific questions.</li>
-        <li class="list-group-item"><strong>Cheat Sheet:</strong> A curated collection of key concepts for quick revision.</li>
-        <li class="list-group-item"><strong>Performance Analytics:</strong> Get insights into strengths and areas for improvement.</li>
-        <li class="list-group-item"><strong>Real-Time Tracking:</strong> Monitor progress and compete with peers.</li>
+        <li class="list-group-item"><strong>{{ _('Subject-Wise Quizzes:') }}</strong> {{ _('Practice questions categorized by subjects to build a strong foundation.') }}</li>
+        <li class="list-group-item"><strong>{{ _('Chapter-Wise Quizzes:') }}</strong> {{ _('Focus on individual chapters to master concepts step by step.') }}</li>
+        <li class="list-group-item"><strong>{{ _('Question-ID Wise Search:') }}</strong> {{ _('Quickly locate and review specific questions.') }}</li>
+        <li class="list-group-item"><strong>{{ _('Cheat Sheet:') }}</strong> {{ _('A curated collection of key concepts for quick revision.') }}</li>
+        <li class="list-group-item"><strong>{{ _('Performance Analytics:') }}</strong> {{ _('Get insights into strengths and areas for improvement.') }}</li>
+        <li class="list-group-item"><strong>{{ _('Real-Time Tracking:') }}</strong> {{ _('Monitor progress and compete with peers.') }}</li>
     </ul>
 
-    <h4 class="text-primary">Why QBC?</h4>
-    <p>QBC is designed to provide an interactive and efficient way of learning by breaking down complex topics into structured quizzes, making self-assessment easier and more effective.</p>
+    <h4 class="text-primary">{{ _('Why QBC?') }}</h4>
+    <p>{{ _('QBC is designed to provide an interactive and efficient way of learning by breaking down complex topics into structured quizzes, making self-assessment easier and more effective.') }}</p>
 
-    <h4 class="text-primary">Contact Us:</h4>
-    <p>For support or feedback, reach us at: <a href="mailto:qbc_admin@fastmail.com">qbc_admin@fastmail.com</a></p>
+    <h4 class="text-primary">{{ _('Contact Us:') }}</h4>
+    <p>{{ _('For support or feedback, reach us at:') }} <a href="mailto:qbc_admin@fastmail.com">qbc_admin@fastmail.com</a></p>
 </div>
 {% endblock %}

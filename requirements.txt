@@ -14,3 +14,5 @@ Werkzeug==3.1.3
 dotenv
 flask_mailman
 flask_migrate
+Flask-Babel==4.0.0
+python-dotenv==1.1.0

@@ -12,6 +12,8 @@ class User(db.Model, UserMixin):
     is_admin = db.Column(db.Boolean, default=False) 
     is_verified = db.Column(db.Boolean, default=False)
     verification_code = db.Column(db.String(6), nullable=True)
+    reset_code = db.Column(db.String(6), nullable=True)
+    reset_code_expires = db.Column(db.DateTime, nullable=True)
     quizzes_attempted = db.relationship('Score', backref='user', lazy=True)
 
 class Subject(db.Model):

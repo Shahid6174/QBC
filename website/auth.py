@@ -1,11 +1,12 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session
 import random
 from flask_mailman import Mail, EmailMessage
-from datetime import datetime
+from datetime import datetime, timedelta
 from .models import User
 from flask_login import login_user, current_user   
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db  
+from flask import current_app
 
 mail = Mail()
 
@@ -16,6 +17,7 @@ def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
+        remember = request.form.get('remember') == 'on'
         user = User.query.filter_by(email=email).first()
 
         if user:
@@ -25,7 +27,7 @@ def login():
 
             if check_password_hash(user.password, password):
                 flash('Logged in successfully', category='success')
-                login_user(user, remember=True)
+                login_user(user, remember=remember)
                 return redirect(url_for('views.dashboard'))
             else:
                 flash('Incorrect password', category='error')
@@ -62,23 +64,43 @@ def signup():
                 email=email, 
                 full_name=full_name,
                 password=generate_password_hash(password1), 
-                qualification = qualification,
-                dob = dob,
+                qualification=qualification,
+                dob=dob,
                 verification_code=verification_code
             )
             db.session.add(new_user)
             db.session.commit()
 
+            # Create email message
             msg = EmailMessage(
-                subject='Email Verification',
-                body=f'Your verification code is: {verification_code}',
-                to=[email],
-                from_email='qbc_admin@fastmail.com'
-            )
-            msg.send()
+                subject='Welcome to QBC - Email Verification',
+                body=f'''
+                Hello {full_name},
 
-            flash('Verification code sent! Please check your email.', category='info')
-            return redirect(url_for('auth.verify_email', email=email))
+                Welcome to QBC! Please use the following code to verify your email address:
+
+                Verification Code: {verification_code}
+
+                This code will expire in 24 hours.
+
+                If you did not create this account, please ignore this email.
+
+                Best regards,
+                QBC Team
+                ''',
+                to=[email],
+                from_email=current_app.config['MAIL_DEFAULT_SENDER']
+            )
+            
+            try:
+                msg.send()
+                flash('Verification code sent! Please check your email.', category='info')
+                return redirect(url_for('auth.verify_email', email=email))
+            except Exception as e:
+                flash('Error sending verification email. Please try again.', category='error')
+                db.session.delete(new_user)
+                db.session.commit()
+                print(f"Email error: {str(e)}")
 
     return render_template('sign-up.html', user=current_user)
 
@@ -130,4 +152,73 @@ def resend_verification_code():
 @auth.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('views.landing_page'))  
+    return redirect(url_for('views.landing_page'))
+
+@auth.route('/reset-password-request', methods=['GET', 'POST'])
+def reset_password_request():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        user = User.query.filter_by(email=email).first()
+        
+        if user:
+            # Generate a random reset code
+            reset_code = ''.join(random.choices('0123456789', k=6))
+            user.reset_code = reset_code
+            user.reset_code_expires = datetime.utcnow() + timedelta(hours=1)
+            db.session.commit()
+
+            # Send reset code email
+            msg = EmailMessage(
+                subject='Password Reset Request',
+                body=f'Your password reset code is: {reset_code}\nThis code will expire in 1 hour.',
+                to=[email]
+            )
+            msg.send()
+            
+            flash('Password reset code has been sent to your email.', category='info')
+            return redirect(url_for('auth.reset_password', email=email))
+        else:
+            flash('Email not found.', category='error')
+    
+    return render_template('reset_password_request.html', user=current_user)
+
+@auth.route('/reset-password', methods=['GET', 'POST'])
+def reset_password():
+    email = request.args.get('email')
+    if request.method == 'POST':
+        code = request.form.get('code')
+        new_password = request.form.get('new_password')
+        confirm_password = request.form.get('confirm_password')
+        
+        user = User.query.filter_by(email=email).first()
+        
+        if not user:
+            flash('User not found.', category='error')
+            return redirect(url_for('auth.login'))
+            
+        if not user.reset_code or user.reset_code != code:
+            flash('Invalid reset code.', category='error')
+            return redirect(url_for('auth.reset_password', email=email))
+            
+        if datetime.utcnow() > user.reset_code_expires:
+            flash('Reset code has expired.', category='error')
+            return redirect(url_for('auth.reset_password_request'))
+            
+        if new_password != confirm_password:
+            flash('Passwords do not match.', category='error')
+            return redirect(url_for('auth.reset_password', email=email))
+            
+        if len(new_password) < 8:
+            flash('Password must be at least 8 characters long.', category='error')
+            return redirect(url_for('auth.reset_password', email=email))
+            
+        # Update password
+        user.password = generate_password_hash(new_password)
+        user.reset_code = None
+        user.reset_code_expires = None
+        db.session.commit()
+        
+        flash('Your password has been reset successfully.', category='success')
+        return redirect(url_for('auth.login'))
+        
+    return render_template('reset_password.html', email=email, user=current_user)  

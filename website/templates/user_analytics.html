@@ -2,13 +2,13 @@
 
 {% block content %}
 <div class="container-fluid mt-4">
-    <h2 class="text-center">User Analytics</h2>
+    <h2 class="text-center">{{ _('User Analytics') }}</h2>
 
     <div class="row justify-content-center">
         <div class="col-lg-4 col-md-6">
             <div class="card text-white bg-primary mb-3">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Quizzes Attempted</h5>
+                    <h5 class="card-title">{{ _('Quizzes Attempted') }}</h5>
                     <p class="card-text display-4" id="quizzes_attempted">0</p>
                 </div>
             </div>
@@ -16,7 +16,7 @@
         <div class="col-lg-4 col-md-6">
             <div class="card text-white bg-success mb-3">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Average Score</h5>
+                    <h5 class="card-title">{{ _('Average Score') }}</h5>
                     <p class="card-text display-4" id="avg_score">0</p>
                 </div>
             </div>
