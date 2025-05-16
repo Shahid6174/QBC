@@ -1,0 +1,16 @@
+{% extends "user_base.html" %}
+
+{% block title %}Profile - QBC App{% endblock %}
+
+{% block content %}
+<h2 class="mb-4 text-primary">User Profile</h2>
+<div class="card shadow-sm">
+   <div class="card-body">
+      <p class="mb-2"><strong>Name:</strong> {{ user.full_name }}</p>
+      <p class="mb-2"><strong>Email:</strong> {{ user.email }}</p>
+      <p class="mb-2"><strong>Level:</strong> {{ user.qualification }}</p>
+      <p class="mb-3"><strong>Date of Birth:</strong> {{ user.dob.strftime('%Y-%m-%d') if user.dob else 'Not specified' }}</p>
+      <a href="{{ url_for('views.edit_profile') }}" class="btn btn-primary">Edit Profile</a>
+   </div>
+</div>
+{% endblock %}

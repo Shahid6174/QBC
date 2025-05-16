@@ -1,0 +1,28 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Edit Profile - QBC App{% endblock %}
+
+{% block content %}
+
+<h2 class="text-primary mb-4">Edit Admin Profile</h2>
+
+<div class="card p-4 shadow-sm">
+    <form method="POST">
+        <div class="mb-3">
+            <label for="name" class="form-label">Full Name</label>
+            <input type="text" class="form-control" name="name" value="{{ admin.full_name }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" value="{{ admin.email }}" readonly>
+        </div>
+
+        <div class="mb-3">
+            <a href="{{ url_for('views.admin_change_password') }}" class="btn btn-warning">Change Password</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</div>
+{% endblock %}

@@ -5,6 +5,8 @@ import json
 from . import db
 from .models import Subject, Chapter, Quiz, Question, Score, User
 from .decorators import admin_required, user_required
+from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 
 views = Blueprint("views", __name__)
 
@@ -467,3 +469,107 @@ def view_performance(quiz_id):
         user_answers = {}
     
     return render_template("performance.html", questions=questions, user_answers=user_answers, score=score)
+
+@views.route("/profile")
+@login_required
+def profile():
+    return render_template("profile.html", user=current_user)
+
+@views.route("/edit-profile", methods=["GET", "POST"])
+@login_required
+def edit_profile():
+    if request.method == "POST":
+        full_name = request.form.get("full_name")
+        dob_str = request.form.get("dob")
+        qualification = request.form.get("qualification")
+        password = request.form.get("password")
+
+        current_user.full_name = full_name
+        # Convert it to a datetime.date object
+        dob = datetime.strptime(dob_str, '%Y-%m-%d').date()
+        current_user.dob = dob
+        current_user.qualification = qualification
+
+        if password:
+            current_user.password = generate_password_hash(password, method='sha256')
+
+        try:
+            db.session.commit()
+            flash("Profile updated successfully!", "success")
+        except Exception as e:
+            db.session.rollback()
+            flash(f"An error occurred: {str(e)}", "danger")
+
+        return redirect(url_for("views.profile"))
+
+    return render_template("edit_profile.html", user=current_user)
+
+@views.route('/change_password', methods=['GET', 'POST'])
+@login_required
+def change_password():
+    if request.method == 'POST':
+        current_pwd = request.form['current_password']
+        new_pwd = request.form['new_password']
+        confirm_pwd = request.form['confirm_password']
+
+        if not check_password_hash(current_user.password, current_pwd):
+            flash('Current password is incorrect', 'error')
+            return redirect(url_for('views.change_password'))
+
+        if new_pwd != confirm_pwd:
+            flash('New passwords do not match', 'error')
+            return redirect(url_for('views.change_password'))
+
+        current_user.password = generate_password_hash(new_pwd)
+        db.session.commit()
+        flash('Password updated successfully', 'success')
+        return redirect(url_for('views.profile', user_id=current_user.id))
+
+    return render_template('change_password.html')
+
+@views.route("/admin/profile")
+@login_required
+@admin_required
+def admin_profile():
+    return render_template("admin_profile.html", admin=current_user)
+
+@views.route("/admin/profile/edit", methods=["GET", "POST"])
+@login_required
+@admin_required
+def edit_admin_profile():
+    if request.method == "POST":
+        name = request.form.get("name", "").strip()
+        email = request.form.get("email", "").strip()
+
+        current_user.full_name = name
+        current_user.email = email
+
+        db.session.commit()
+        flash("Profile updated successfully!", "success")
+        return redirect(url_for("views.admin_profile"))
+
+    return render_template("edit_admin_profile.html", admin=current_user)
+
+@views.route('/admin/change/password', methods=['GET', 'POST'])
+@login_required
+@admin_required
+def admin_change_password():
+    if request.method == 'POST':
+        current_pwd = request.form['current_password']
+        new_pwd = request.form['new_password']
+        confirm_pwd = request.form['confirm_password']
+
+        if not check_password_hash(current_user.password, current_pwd):
+            flash('Current password is incorrect', 'error')
+            return redirect(url_for('views.admin_change_password'))
+
+        if new_pwd != confirm_pwd:
+            flash('New passwords do not match', 'error')
+            return redirect(url_for('views.admin_change_password'))
+
+        current_user.password = generate_password_hash(new_pwd)
+        db.session.commit()
+        flash('Password updated successfully', 'success')
+        return redirect(url_for('views.admin_profile', user_id=current_user.id))
+
+    return render_template('admin_change_password.html')
