@@ -159,5 +159,15 @@ python app.py
 
 <h1>📱Project Screenshots</h1>
 
+## 📸 Project Screenshots
+
+Project screenshots are available in the `docs/images/` folder:
+
+| Home Page | Quiz Page | Dashboard |
+|-----------|-----------|-----------|
+| ![Home Page](docs/images/home_page.png) | ![Quiz Page](docs/images/quiz_page.png) | ![Dashboard](docs/images/dashboard.png) |
+
+> Add your screenshots to the `docs/images/` folder with the above filenames for them to appear here.
+
 
 
