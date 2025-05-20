@@ -8,6 +8,7 @@
 <hr>
 
 <form action="{{ url_for('views.add_chapter', subject_id=subject.id) }}" method="POST">
+    {{csrf_token()}}
     <div class="mb-3">
         <label for="name" class="form-label">Chapter Name</label>
         <input type="text" class="form-control" id="name" name="name" required>
