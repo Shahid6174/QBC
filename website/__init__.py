@@ -16,8 +16,8 @@ load_dotenv()
 from .models import User
 
 DB_NAME = os.environ.get('SQLITE_DB', 'qbc.db') 
-ADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'qbc_admin@gmail.com') 
-ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', '342b6h558h6z2w57')
+ADMIN_EMAIL = os.environ.getADMIN_EMAIL = os.environ.get('ADMIN_EMAIL', 'asmfreelancer99@gmail.com')
+ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'ohwclqjxcxkdogfn')
 SECRET_KEY = os.environ.get('SECRET_KEY', 'shahid')
 
 def create_database(app):
