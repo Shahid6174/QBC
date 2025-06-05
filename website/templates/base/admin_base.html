@@ -73,12 +73,45 @@
 
     <div class="container mt-4">
         {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-        {% for category, message in messages %}
-        <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }}">{{ message }}</div>
-        {% endfor %}
-        {% endif %}
+          {% if messages %}
+            <div id="flash-messages-container" style="position: fixed; top: 30px; right: 30px; z-index: 2000; min-width: 320px;">
+              {% for category, message in messages %}
+                <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }} alert-dismissible fade show flash-message shadow-lg border-2 border-{{ 'danger' if category == 'error' else 'success' }}" role="alert" style="font-size: 1.1rem; background: linear-gradient(90deg, #e0c3fc 0%, #8ec5fc 100%); color: #4b0082; border-width: 2px;">
+                  <div class="d-flex align-items-center">
+                    <span class="me-2">
+                      {% if category == 'success' %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#198754" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.97 11.03a.75.75 0 0 0 1.07 0l3.992-3.992a.75.75 0 1 0-1.06-1.06L7.5 9.439 6.03 7.97a.75.75 0 1 0-1.06 1.06l1.999 2z"/>
+                        </svg>
+                      {% elif category == 'error' %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#dc3545" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                        </svg>
+                      {% endif %}
+                    </span>
+                    <div>
+                      <strong style="font-size: 1.15rem;">{% if category == 'success' %}Success!{% elif category == 'error' %}Error!{% endif %}</strong>
+                      <span class="ms-1">{{ message }}</span>
+                    </div>
+                  </div>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
         {% endwith %}
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+              document.querySelectorAll('.flash-message').forEach(function(msg) {
+                msg.classList.remove('show');
+                setTimeout(function() {
+                  msg.remove();
+                }, 500);
+              });
+            }, 10000);
+          });
+        </script>
         {% block content %}{% endblock %}
     </div>
 
