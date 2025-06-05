@@ -109,12 +109,22 @@ def create_database(app):
 		<li>4.Copy that code that appears on screen and add it as a MAIL_PASSWORD in .env file</li>
 </div>
 
-## 5. Run the application:
+
+## 6. Configure db files
+Run:
+```
+export FLASK_APP=website:create_app
+flask db init
+flask db migrate -m "study plans"
+flask db upgrade
+```
+
+## 7. Run the application:
 ```bash
 python app.py
 ```
 
-## 6. Now, open link: `http://127.0.0.1:5000`
+## 8. Now, open link: `http://127.0.0.1:5000`
 
 
 <h2>⭐Databases</h2>
