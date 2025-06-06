@@ -53,9 +53,7 @@
 </div>
 
 <script>
-let timeLeft = parseInt("{{ quiz.time_duration|int }}") * 60;
-
-
+    let timeLeft = parseInt("{{ quiz.time_duration|int }}") * 60;
     let quizSubmitted = false;  // Prevent multiple submissions
 
     // Update Timer
