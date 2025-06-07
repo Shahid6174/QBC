@@ -14,7 +14,7 @@
     </thead>
     <tbody>
         {% for question in questions %}
-        {% set user_answer = user_answers.get(question.id, "Not Answered") %}
+        {% set user_answer = user_answers.get(question.id|string, "Not Answered") %}
         <tr>
             <td>{{ question.question_text }}</td>
             <td class="{% if user_answer == question.correct_option %}text-success{% else %}text-danger{% endif %}">

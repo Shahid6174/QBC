@@ -168,6 +168,35 @@ python app.py
 
 
 <h1>📱Project Screenshots</h1>
+<h2>User Module</h2>
 
+<h3>User Dashboard</h3>
+
+![image](https://github.com/user-attachments/assets/49e883e3-61ab-44fc-b674-91d886c36c0c)
+<h3>User Analytics</h3>
+
+![image](https://github.com/user-attachments/assets/e2633113-0b0f-42ca-b739-3d99cc504720)
+<h3>User Quiz Mode</h3>
+
+![image](https://github.com/user-attachments/assets/efcb9cee-529f-4a46-aa63-9f2f80b274ce)
+
+
+<h2>Admin Module</h2>
+<h3>Admin Dashboard</h3>
+
+![image](https://github.com/user-attachments/assets/4eaa6ddb-41e8-49a2-b470-111dab580d13)
+<h3>Admin Analytics</h3>
+
+![image](https://github.com/user-attachments/assets/e216f10d-7701-43ad-8f31-45cb4c6918c1)
+
+<h3>Admin Subjects Panel</h3>
+
+![image](https://github.com/user-attachments/assets/524afd31-bf70-472e-bfe8-19015ac7e8ae)
+<h3>Subject's Quizzes Page</h3>
+
+![image](https://github.com/user-attachments/assets/08fc819e-5e9a-49b0-9e76-2c3a5ae4599f)
+<h3>Quiz Editor</h3>
+
+![image](https://github.com/user-attachments/assets/3370ff8f-b273-47b3-925b-d32e90eca157)
 
 
