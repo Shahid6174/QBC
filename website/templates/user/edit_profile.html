@@ -3,43 +3,89 @@
 {% block title %}Edit Profile - QBC App{% endblock %}
 
 {% block content %}
-<h2 class="mb-4 text-primary">Edit Profile</h2>
-<div class="card shadow-sm">
-    <div class="card-body">
-        <form method="POST">
-            <div class="mb-3">
-                <label class="form-label">Full Name:</label>
-                <input type="text" name="full_name" class="form-control" value="{{ user.full_name }}" required>
+<div class="card shadow-lg border-0 rounded-4 p-4 bg-light">
+    <h3 class="text-primary fw-semibold mb-4">Edit Profile</h3>
+
+    <form method="POST" enctype="multipart/form-data">
+        <div class="row g-4">
+            <!-- Profile Image Section -->
+            <div class="col-md-4 text-center">
+                <img src="{{ url_for('static', filename='uploads/profile_images/' ~ user.profile_image) if user.profile_image else url_for('static', filename='uploads/a.png') }}"
+                     alt="Profile Image"
+                     class="rounded-circle border border-3 border-primary-subtle shadow mb-3"
+                     style="width: 130px; height: 130px; object-fit: cover;">
+
+                <div class="mb-3">
+                    <label for="profile_image" class="form-label fw-semibold text-dark">Change Profile Picture</label>
+                    <input class="form-control rounded-3" type="file" id="profile_image" name="profile_image" accept="image/*">
+                </div>
             </div>
 
-            <div class="mb-3">
-                <label class="form-label">Email:</label>
-                <input type="email" name="email" class="form-control" value="{{ user.email }}" readonly>
-            </div>
+            <!-- Profile Info Section -->
+            <div class="col-md-8">
+                <!-- Full Name -->
+                <div class="mb-3">
+                    <label for="name" class="form-label fw-semibold text-dark">Full Name</label>
+                    <input type="text" class="form-control rounded-3" id="name" name="name" value="{{ user.full_name }}" required>
+                </div>
 
-            <div class="mb-3">
-                <label class="form-label">Date of Birth:</label>
-                <input type="date" name="dob" class="form-control" value="{{ user.dob }}" required>
-            </div>
+                <!-- Email -->
+                <div class="mb-3">
+                    <label for="email" class="form-label fw-semibold text-dark">Email</label>
+                    <input type="email" class="form-control rounded-3" id="email" name="email" value="{{ user.email }}" required>
+                </div>
 
-            <div class="mb-3">
-                <label class="form-label">Level:</label>
-                <select name="qualification" class="form-select" required>
-                    <option value="" disabled>Select your Level</option>
-                    <option value="Foundation" {% if user.qualification == "Foundation" %}selected{% endif %}>Foundation</option>
-                    <option value="Diploma in DS" {% if user.qualification == "Diploma in DS" %}selected{% endif %}>Diploma in DS</option>
-                    <option value="Diploma in Programming" {% if user.qualification == "Diploma in Programming" %}selected{% endif %}>Diploma in Programming</option>
-                    <option value="Bsc" {% if user.qualification == "Bsc" %}selected{% endif %}>Bsc</option>
-                    <option value="BS" {% if user.qualification == "BS" %}selected{% endif %}>BS</option>
-                </select>
-            </div>
+                <!-- Phone -->
+                <div class="mb-3">
+                    <label for="phone" class="form-label fw-semibold text-dark">Phone</label>
+                    <input type="text" class="form-control rounded-3" id="phone" name="phone" value="{{ user.phone }}">
+                </div>
+                <!--DOB-->
+                <div class="mb-3">
+                    <label class="form-label">Date of Birth:</label>
+                    <input type="date" name="dob" class="form-control" value="{{ user.dob }}" required>
+                </div>
+                <!-- Location -->
+                <div class="mb-3">
+                    <label for="location" class="form-label fw-semibold text-dark">Location</label>
+                    <input type="text" class="form-control rounded-3" id="location" name="location" value="{{ user.location }}">
+                </div>
 
-            <div class="mb-3">
-                <a href="{{ url_for('views.change_password') }}" class="btn btn-warning">Change Password</a>
-            </div>
+                <!-- Role -->
+                <div class="mb-3">
+                    <label for="role" class="form-label fw-semibold text-dark">Role</label>
+                    <input type="text" class="form-control rounded-3" id="role" name="role" value="{{ 'Admin' if user.is_admin else 'User' }}" disabled placeholder="{{ 'Admin' if user.is_admin else 'User' }}">
+                </div>
+                <!--Education level-->
+                <div class="mb-3">
+                    <label for="role" class="form-label fw-semibold text-dark">Level</label>
+                    <select name="qualification" class="form-select" required>
+                        <option value="" disabled>Select your Level</option>
+                        <option value="Foundation" {% if user.qualification == "Foundation" %}selected{% endif %}>Foundation</option>
+                        <option value="Diploma in DS" {% if user.qualification == "Diploma in DS" %}selected{% endif %}>Diploma in DS</option>
+                        <option value="Diploma in Programming" {% if user.qualification == "Diploma in Programming" %}selected{% endif %}>Diploma in Programming</option>
+                        <option value="Bsc" {% if user.qualification == "Bsc" %}selected{% endif %}>Bsc</option>
+                        <option value="BS" {% if user.qualification == "BS" %}selected{% endif %}>BS</option>
+                    </select>
+                </div>
+                <!-- Bio -->
+                <div class="mb-3">
+                    <label for="bio" class="form-label fw-semibold text-dark">About Me</label>
+                    <textarea class="form-control rounded-3" id="bio" name="bio" rows="4">{{ user.bio }}</textarea>
+                </div>
 
-            <button type="submit" class="btn btn-primary">Save Changes</button>
-        </form>
-    </div>
+                <!-- Submit and Change Password Buttons -->
+                <div class="d-flex justify-content-end gap-3 mt-4">
+                    <a href="{{ url_for('views.admin_change_password') }}" class="btn btn-warning rounded-pill px-4 py-2">
+                        <i class="bi bi-shield-lock"></i> Change Password
+                    </a>
+                    <button type="submit" class="btn btn-primary rounded-pill px-4 py-2">
+                        <i class="bi bi-save"></i> Save Changes
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </form>
 </div>
 {% endblock %}
