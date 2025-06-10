@@ -14,6 +14,11 @@ class User(db.Model, UserMixin):
     is_verified = db.Column(db.Boolean, default=False)
     verification_code = db.Column(db.String(6), nullable=True)
     quizzes_attempted = db.relationship('Score', backref='user', lazy=True)
+    profile_image = db.Column(db.String(255), nullable=True)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=True)
+    phone = db.Column(db.String(20), nullable=True)
+    bio = db.Column(db.Text, nullable=True)
+    location = db.Column(db.String(150), nullable=True)
 
     def __repr__(self):
         return f'<User {self.email}>'

@@ -1,12 +1,14 @@
 from flask_login import login_required, current_user
-from flask import Blueprint, render_template, request, redirect, url_for, flash, abort, jsonify
+from flask import Blueprint, render_template, request, redirect, url_for, flash, abort, jsonify,current_app
 from sqlalchemy import func
 import json
 from . import db
 from .models import Subject, Chapter, Quiz, Question, Score, User
 from .decorators import admin_required, user_required
 from werkzeug.security import generate_password_hash, check_password_hash
+import os
 from datetime import datetime, date
+from werkzeug.utils import secure_filename
 
 views = Blueprint("views", __name__)
 
@@ -515,13 +517,23 @@ def profile():
 @login_required
 def edit_profile():
     if request.method == "POST":
-        full_name = request.form.get("full_name")
+        # Get form data
+        name = request.form.get("name", "").strip()
+        email = request.form.get("email", "").strip()
         dob_str = request.form.get("dob")
+        phone = request.form.get("phone", "").strip()
+        location = request.form.get("location", "").strip()
+        bio = request.form.get("bio", "").strip()
         qualification = request.form.get("qualification")
-        password = request.form.get("password")
 
-        current_user.full_name = full_name
-        
+        # Assign to current_user
+        current_user.full_name = name
+        current_user.email = email
+        current_user.phone = phone
+        current_user.location = location
+        current_user.bio = bio
+        current_user.qualification = qualification
+        #handle date format stuff
         if dob_str:
             try:
                 current_user.dob = datetime.strptime(dob_str, '%Y-%m-%d').date()
@@ -530,12 +542,20 @@ def edit_profile():
                 return redirect(url_for("views.edit_profile"))
         else:
             current_user.dob = None
+        # Handle profile image upload
+        if "profile_image" in request.files:
+            file = request.files["profile_image"]
 
-        current_user.qualification = qualification
+            if file and file.filename != "":
+                filename = secure_filename(file.filename)  # Ensures safe file name
+                upload_dir = os.path.join(current_app.root_path, "static/uploads/profile_images")
+                os.makedirs(upload_dir, exist_ok=True)
 
-        if password:
-            # Removed method='sha256'
-            current_user.password = generate_password_hash(password)
+                upload_path = os.path.join(upload_dir, filename)
+                file.save(upload_path)
+
+                current_user.profile_image = filename
+                db.session.commit()
 
         try:
             db.session.commit()
@@ -593,22 +613,55 @@ def admin_profile():
 @admin_required
 def edit_admin_profile():
     if request.method == "POST":
+        # Get form data
         name = request.form.get("name", "").strip()
         email = request.form.get("email", "").strip()
+        dob_str = request.form.get("dob")
+        phone = request.form.get("phone", "").strip()
+        location = request.form.get("location", "").strip()
+        bio = request.form.get("bio", "").strip()
 
+        # Assign to current_user
         current_user.full_name = name
         current_user.email = email
+        current_user.phone = phone
+        current_user.location = location
+        current_user.bio = bio
+        #handle date format stuff
+        if dob_str:
+            try:
+                current_user.dob = datetime.strptime(dob_str, '%Y-%m-%d').date()
+            except ValueError:
+                flash("Invalid date format for Date of Birth. Please use YYYY-MM-DD.", "error")
+                return redirect(url_for("views.edit_profile"))
+        else:
+            current_user.dob = None
+        # Handle profile image upload
+        if "profile_image" in request.files:
+            file = request.files["profile_image"]
+
+            if file and file.filename != "":
+                filename = secure_filename(file.filename)  # Ensures safe file name
+                upload_dir = os.path.join(current_app.root_path, "static/uploads/profile_images")
+                os.makedirs(upload_dir, exist_ok=True)
+
+                upload_path = os.path.join(upload_dir, filename)
+                file.save(upload_path)
+
+                current_user.profile_image = filename
+                db.session.commit()
 
         try:
             db.session.commit()
             flash("Profile updated successfully!", "success")
         except Exception as e:
             db.session.rollback()
-            flash(f"An error occurred while updating admin profile: {str(e)}", "danger")
+            flash(f"An error occurred while updating profile: {str(e)}", "danger")
 
         return redirect(url_for("views.admin_profile"))
 
     return render_template("admin/edit_admin_profile.html", admin=current_user)
+
 
 @views.route('/admin/change/password', methods=['GET', 'POST'])
 @login_required
@@ -642,7 +695,7 @@ def admin_change_password():
             flash(f"An error occurred while changing admin password: {str(e)}", "danger")
             return redirect(url_for('views.admin_change_password'))
 
-    return render_template('admin_change_password.html')
+    return render_template('admin/change_password.html')
 
 # Leaderboard route
 @views.route('/leaderboard')

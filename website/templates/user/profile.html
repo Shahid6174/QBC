@@ -3,14 +3,108 @@
 {% block title %}Profile - QBC App{% endblock %}
 
 {% block content %}
-<h2 class="mb-4 text-primary">User Profile</h2>
-<div class="card shadow-sm">
-   <div class="card-body">
-      <p class="mb-2"><strong>Name:</strong> {{ user.full_name }}</p>
-      <p class="mb-2"><strong>Email:</strong> {{ user.email }}</p>
-      <p class="mb-2"><strong>Level:</strong> {{ user.qualification }}</p>
-      <p class="mb-3"><strong>Date of Birth:</strong> {{ user.dob.strftime('%Y-%m-%d') if user.dob else 'Not specified' }}</p>
-      <a href="{{ url_for('views.edit_profile') }}" class="btn btn-primary">Edit Profile</a>
-   </div>
+
+<div class="card shadow-lg border-0 rounded-4 p-4 bg-light">
+    <div class="d-flex flex-column flex-md-row align-items-start gap-4">
+
+        <!-- Profile Picture -->
+        <div class="text-center text-md-start">
+           <img src="{{ url_for('static', filename='uploads/profile_images/' ~ (admin.profile_image if admin.profile_image and admin.profile_image != 'False' else 'a.png')) }}"
+         alt="Sample Profile Picture"
+         class="rounded-circle border border-3 border-primary-subtle shadow"
+         style="width: 130px; height: 130px; object-fit: cover;">
+        </div>
+
+
+
+        <!-- Profile Info -->
+        <div class="flex-grow-1 w-100">
+            <div class="d-flex justify-content-between flex-wrap align-items-center">
+                <div>
+                    <h3 class="fw-semibold text-dark mb-1">{{ user.full_name }}</h3>
+                    <span class="badge bg-primary-subtle text-primary fw-semibold px-3 py-1">
+                        {{ user.role or 'User' }}
+                    </span>
+                </div>
+                <a href="{{ url_for('views.edit_profile') }}" 
+                   class="btn btn-primary rounded-pill d-flex align-items-center gap-2 mt-2 mt-md-0">
+                    <i class="bi bi-pencil-square"></i> Edit Profile
+                </a>
+            </div>
+
+            <h
+
+
+            r class="my-3">
+
+            <div class="row g-3">
+                <div class="col-sm-6">
+                    <div class="d-flex align-items-start gap-2">
+                        <i class="bi bi-envelope-fill fs-5 text-primary"></i>
+                        <div>
+                            <div class="fw-semibold text-dark">Email</div>
+                            <div class="text-muted">{{ user.email }}</div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start gap-2 mt-3">
+                        <i class="bi bi-geo-alt-fill fs-5 text-danger"></i>
+                        <div>
+                            <div class="fw-semibold text-dark">Location</div>
+                            <div class="text-muted">{{ user.location or 'Unknown' }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="d-flex align-items-start gap-2">
+                        <i class="bi bi-calendar-event-fill fs-5 text-success"></i>
+                        <div>
+                            <div class="fw-semibold text-dark">Joined Date</div>
+                            <div class="text-muted">
+                                {{ user.created_at.strftime('%b %d, %Y') if user.created_at else 'N/A' }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-start gap-2 mt-3">
+                        <i class="bi bi-phone-fill fs-5 text-info"></i>
+                        <div>
+                            <div class="fw-semibold text-dark">Phone</div>
+                            <div class="text-muted">{{ user.phone or 'N/A' }}</div>
+                        </div>
+                    </div>
+                </div>
+          
+
+            
+                <div class="col-sm-6">
+                    <div class="d-flex align-items-start gap-2">
+                        <i class="bi bi-envelope-fill fs-5 text-primary"></i>
+                        <div>
+                            <div class="fw-semibold text-dark">Date of Birth</div>
+                            <div class="text-muted">{{ user.dob }}</div>
+                        </div>
+                    </div>
+                 </div>
+                 <div class="col-sm-6">
+                    <div class="d-flex align-items-start gap-2 mt-3">
+                        <i class="bi bi-geo-alt-fill fs-5 text-danger"></i>
+                        <div>
+                            <div class="fw-semibold text-dark">Education Level</div>
+                            <div class="text-muted">{{ user.qualification or 'Unknown' }}</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Bio -->
+            <div class="mt-4">
+                <p class="fw-semibold text-dark mb-1">About Me</p>
+                <p class="text-muted fst-italic mb-0">
+                    {{ user.bio or "This user hasn't added a bio yet." }}
+                </p>
+            </div>
+        </div>
+    </div>
 </div>
+
 {% endblock %}
