@@ -10,7 +10,8 @@
         <div class="row g-4">
             <!-- Profile Image Section -->
             <div class="col-md-4 text-center">
-                <img src="{{ url_for('static', filename='uploads/profile_images/' ~ user.profile_image) if user.profile_image else url_for('static', filename='uploads/profile_images/a.png') }}"
+                <img src="{{ url_for('static', filename='uploads/profile_images/' ~ (admin.profile_image if admin.profile_image and admin.profile_image != 'False' else 'a.png')) }}"
+
                      alt="Profile Image"
                      class="rounded-circle border border-3 border-primary-subtle shadow mb-3"
                      style="width: 130px; height: 130px; object-fit: cover;">

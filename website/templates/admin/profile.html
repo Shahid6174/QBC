@@ -9,7 +9,8 @@
 
         <!-- Profile Picture -->
         <div class="text-center text-md-start">
-           <img src="{{ url_for('static', filename='uploads/profile_images/' ~ admin.profile_image) if admin.profile_image else url_for('static', filename='uploads/profile_images/a.png') }}"
+           <img src="{{ url_for('static', filename='uploads/profile_images/' ~ (admin.profile_image if admin.profile_image and admin.profile_image != 'False' else 'a.png')) }}"
+
          alt="Sample Profile Picture"
          class="rounded-circle border border-3 border-primary-subtle shadow"
          style="width: 130px; height: 130px; object-fit: cover;">
