@@ -76,7 +76,8 @@ def signup():
                 to=[email],
                 from_email=os.environ.get('ADMIN_EMAIL')
             )
-            msg.send()
+            print(f"Mock email: {msg.subject} sent to {msg.recipients}")
+            # msg.send()
 
             flash('Verification code sent! Please check your email.', category='info')
             return redirect(url_for('auth.verify_email', email=email))
