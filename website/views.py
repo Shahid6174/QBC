@@ -367,7 +367,7 @@ def start_quiz(quiz_id):
     for question in questions:
         question.options = question.get_options()
 
-    flash("⚠️ Before you start, ensure a stable internet connection and avoid switching tabs. Any violations may auto-submit your quiz.", "info")
+    flash("⚠️ Before you start, ensure a stable internet connection and avoid switching tabs. Any violations may auto-submit your quiz.", "error")
 
     return render_template("quizzes/quiz_page.html", quiz=quiz, questions=questions)
 

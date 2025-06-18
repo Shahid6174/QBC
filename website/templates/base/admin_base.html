@@ -75,7 +75,7 @@
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
         {% for category, message in messages %}
-        <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }}">{{ message }}</div>
+        {% include 'component/toast.html' %}
         {% endfor %}
         {% endif %}
         {% endwith %}

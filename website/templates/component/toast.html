@@ -1,0 +1,33 @@
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 11">
+  {% for category, message in messages %}
+  <div
+    class="toast {% if category == 'error' %}text-bg-danger {% elif category == 'success' %}text-bg-success {% else %}text-bg-primary{% endif %}"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+    data-bs-autohide="true"
+  >
+    <div class="toast-header">
+      <strong class="me-auto">{{ category|capitalize }}</strong>
+      <small>Just now</small>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="toast-body" style="font-size: 1.25rem">{{ message }}</div>
+  </div>
+  {% endfor %}
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    var toastElList = [].slice.call(document.querySelectorAll(".toast"));
+    var toastList = toastElList.map(function (toastEl) {
+      return new bootstrap.Toast(toastEl);
+    });
+    toastList.forEach((toast) => toast.show());
+  });
+</script>
