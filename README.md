@@ -25,7 +25,6 @@
   <li><strong>User Management</strong>: Track user verification and activity.</li>
 </ul>
 
-
 <h2>⭐Technical Stack</h2>
 <ul>
   <li><strong>Backend</strong>: Python Flask</li>
@@ -36,96 +35,36 @@
   <li><strong>Charts</strong>: Chart.js for analytics visualization</li>
 </ul>
 
-
 <h2>⭐Installation and Setup</h2>
 
-1. Clone the repository:
-```
+For detailed installation instructions and usage guide, please check the [Installation & Usage Guide](docs/installation.md).
+
+Below is a quick setup summary:
+
+1. Clone the repository and set up the environment:
+
+```bash
 git clone https://github.com/Shahid6174/QBC.git
 cd QBC
-```
-
-## 2. Create a virtual environment
-
-```bash
 python -m venv venv
 source venv/bin/activate  # On Windows use: venv\Scripts\activate
-```
-
-## 3. Install rest of the dependencies using poetry
-
-```bash
 pip install poetry
 poetry install --no-root
 ```
-## 4. Update .env variables
 
-1.Create file .env
-2.Copy Contents of .env.example to .env
-3.Replace environment variables with your own credentials
+2. Configure your environment:
 
-## Run the Application
+   - Create a `.env` file from `.env.example`
+   - Set up Gmail app password for email functionality
+   - Initialize the database
 
-```bash
-flask run
-```
+3. Run the application:
 
-4. Configure email settings:
-Open `website/__init__.py` and update the email configuration:
-```python
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-    app.config['MAIL_PORT'] = 465
-    app.config['MAIL_USERNAME'] = ADMIN_EMAIL
-    app.config['MAIL_PASSWORD'] = ADMIN_PASSWORD
-    app.config['MAIL_USE_TLS'] = False
-    app.config['MAIL_USE_SSL'] = True
-
-```
-Also Modify the function create_database so that you can add your own admin.
-```python
-def create_database(app):
-    ......
-            # Check if admin user already exists
-            admin_user = User.query.filter_by(email="admin_qbc@gmail.com").first()
-            if not admin_user:
-                print("Creating default admin user...")
-                admin = User(
-                    email="qbc_admin@gmail.com",                       # also Modify the Email According to Your Choice
-                    password=generate_password_hash("admin@123"),         #add Credentials that You want
-                    full_name="Admin QBC",
-                    is_admin=True,
-                    is_verified=True
-                )
-                db.session.add(admin)
-                db.session.commit()
-                print("Admin user created!")
-```
-
-<div>
-	<h1>Important Steps to Follow for the Above Functions Mail username Updation</h1>
-		<li>1.Open the Link "https://myaccount.google.com/apppasswords" </li>
-		<li>2.Login with your Email there</li>
-		<li>3.Type Your App name and Mark Create App.</li>
-		<li>4.Copy that code that appears on screen and add it as a MAIL_PASSWORD in .env file</li>
-</div>
-
-
-## 6. Configure db files
-Run:
-```
-export FLASK_APP=website:create_app
-flask db init
-flask db migrate -m "study plans"
-flask db upgrade
-```
-
-## 7. Run the application:
 ```bash
 python app.py
 ```
 
-## 8. Now, open link: `http://127.0.0.1:5000`
-
+Access the application at: `http://127.0.0.1:5000`
 
 <h2>⭐Databases</h2>
 <ul>
@@ -166,25 +105,26 @@ python app.py
   <li>Monitor qualification distribution and subject performance.</li>
 </ul>
 
-
 <h1>📱Project Screenshots</h1>
 <h2>User Module</h2>
 
 <h3>User Dashboard</h3>
 
 ![image](https://github.com/user-attachments/assets/49e883e3-61ab-44fc-b674-91d886c36c0c)
+
 <h3>User Analytics</h3>
 
 ![image](https://github.com/user-attachments/assets/e2633113-0b0f-42ca-b739-3d99cc504720)
+
 <h3>User Quiz Mode</h3>
 
 ![image](https://github.com/user-attachments/assets/efcb9cee-529f-4a46-aa63-9f2f80b274ce)
-
 
 <h2>Admin Module</h2>
 <h3>Admin Dashboard</h3>
 
 ![image](https://github.com/user-attachments/assets/4eaa6ddb-41e8-49a2-b470-111dab580d13)
+
 <h3>Admin Analytics</h3>
 
 ![image](https://github.com/user-attachments/assets/e216f10d-7701-43ad-8f31-45cb4c6918c1)
@@ -192,11 +132,11 @@ python app.py
 <h3>Admin Subjects Panel</h3>
 
 ![image](https://github.com/user-attachments/assets/524afd31-bf70-472e-bfe8-19015ac7e8ae)
+
 <h3>Subject's Quizzes Page</h3>
 
 ![image](https://github.com/user-attachments/assets/08fc819e-5e9a-49b0-9e76-2c3a5ae4599f)
+
 <h3>Quiz Editor</h3>
 
 ![image](https://github.com/user-attachments/assets/3370ff8f-b273-47b3-925b-d32e90eca157)
-
-
