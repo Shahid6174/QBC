@@ -1,29 +1,131 @@
-<h1 align="center">🌟QBC - Quiz Based Challenge🌟</h1>
+<h1 align="center">🌟 QBC - Quiz Based Challenge 🌟</h1>
 
 <p align="center">
   <img src="website/static/images/QBC_logo.png" alt="QBC Logo" height="188" />
 </p>
-<h2>⭐Overview</h2>
-<p>QBC (Quiz-Based Challenge) is a Web App designed to help users strengthen their understanding of various subjects through structured quizzes. It enables effective exam preparation by organizing quizzes subject-wise and chapter-wise for better learning outcomes.Here Admins can upload the Quizzes and the users can give the Quizzes and get their scores too</p>
 
-<h2>⭐Features</h2>
+---
 
-<h3>For Users</h3>
-<ul>
-  <li><strong>Subject-Wise Quizzes</strong>: Practice questions categorized by subjects to build a strong foundation.</li>
-  <li><strong>Chapter-Wise Quizzes</strong>: Focus on individual chapters to master concepts step by step.</li>
-  <li><strong>Performance Analytics</strong>: Get insights about strengths and areas for improvement.</li>
-  <li><strong>Real-Time Tracking</strong>: Monitor progress with details.</li>
-  <li><strong>Anti Cheat Quiz Environment</strong>: Anti-cheating measures including full-screen mode enforcement and tab-switching detection.</li>
-</ul>
+## ⭐ Overview
 
-<h3>For Administrators</h3>
-<ul>
-  <li><strong>Complete Content Management</strong>: Create and manage subjects, chapters, quizzes, and questions.</li>
-  <li><strong>Quiz Publishing Control</strong>: Decide when quizzes are available to users.</li>
-  <li><strong>Comprehensive Analytics</strong>: Monitor student performance, subject popularity, and qualification distribution.</li>
-  <li><strong>User Management</strong>: Track user verification and activity.</li>
-</ul>
+**QBC (Quiz-Based Challenge)** is a web app designed to boost learning through structured, subject- and chapter-wise quizzes. It enables effective preparation with analytics, an anti-cheat environment, and both admin and user features.
+
+
+---
+
+## ⭐ Features
+
+### 👨‍🎓 For Users
+
+- **Subject-Wise Quizzes** – Practice by subjects to strengthen your base.
+- **Chapter-Wise Quizzes** – Focused learning on individual chapters.
+- **Performance Analytics** – Know your strengths and weak spots.
+- **Real-Time Tracking** – Monitor your quiz journey.
+- **Anti-Cheat Environment** – Fullscreen mode and tab-switch detection.
+
+### 🛠️ For Administrators
+
+- **Content Management** – Create/manage subjects, chapters, quizzes, and questions.
+- **Quiz Publishing Controls** – Decide availability timings.
+- **Student Analytics** – Monitor student performance and trends.
+- **User Management** – Track user verification and activity.
+
+---
+
+## 🧰 Tech Stack
+
+- **Backend**: Python Flask  
+- **Database**: SQLAlchemy + SQLite  
+- **Authentication**: Flask-Login  
+- **Email**: Flask-Mailman  
+- **Frontend**: Bootstrap 5, HTML, CSS, JS  
+- **Analytics**: Chart.js  
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the Repository
+
+git clone https://github.com/Shahid6174/QBC.git
+cd QBC
+
+
+### 2. Create and Activate Virtual Environment
+
+python -m venv venv
+# Activate on Windows:
+venv\Scripts\activate
+# On Linux/macOS:
+source venv/bin/activate
+
+
+### 3. Install Dependencies using poetry
+
+pip install poetry
+poetry install --no-root
+
+
+### 4. Update .env variables
+
+1. Create file .env
+2. cp .env.example .env
+3. Update the variables in .env:
+SECRET_KEY='your_secret_key'
+ADMIN_EMAIL='your_admin_email'
+ADMIN_PASSWORD='your_admin_password'
+SQLITE_DB='qbc.db'
+
+---
+
+## 📧 Email Setup (Optional)
+To avoid issues:
+
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = ADMIN_EMAIL
+app.config['MAIL_PASSWORD'] = ADMIN_PASSWORD
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+
+---
+
+## 🔐 Setup App Password for Gmail
+Go to: App Passwords
+
+Log in → Choose "Mail" as app → Get app password.
+
+Add it in your .env as MAIL_PASSWORD.
+
+---
+
+## 👨‍💻 Create Default Admin User
+In create_database(app) method:
+
+admin = User(
+    email="your_email",
+    password=generate_password_hash("your_password"),
+    full_name="Admin QBC",
+    is_admin=True,
+    is_verified=True
+)
+
+---
+
+## 🧱 Database Setup
+
+export FLASK_APP=website:create_app  # On Windows: set FLASK_APP=website:create_app
+flask db init
+flask db migrate -m "initial migration"
+flask db upgrade
+
+---
+
+## Run the Application
+
+python app.py
+
+Then visit: http://127.0.0.1:5000
 
 <h2>⭐Technical Stack</h2>
 <ul>
@@ -37,36 +139,9 @@
 
 <h2>⭐Installation and Setup</h2>
 
-For detailed installation instructions and usage guide, please check the [Installation & Usage Guide](docs/installation.md).
+For more detailed installation instructions and usage guide, please check the [Installation & Usage Guide](docs/installation.md).
 
-Below is a quick setup summary:
-
-1. Clone the repository and set up the environment:
-
-```bash
-git clone https://github.com/Shahid6174/QBC.git
-cd QBC
-python -m venv venv
-source venv/bin/activate  # On Windows use: venv\Scripts\activate
-pip install poetry
-poetry install --no-root
-```
-
-2. Configure your environment:
-
-   - Create a `.env` file from `.env.example`
-   - Set up Gmail app password for email functionality
-   - Initialize the database
-
-3. Run the application:
-
-```bash
-python app.py
-```
-
-Access the application at: `http://127.0.0.1:5000`
-
-<h2>⭐Databases</h2>
+<h2>📊 Database Models</h2>
 <ul>
   <li><strong>User</strong>: Stores user information, authentication details, and verification status</li>
   <li><strong>Subject</strong>: Represents a subject area with multiple chapters.</li>
@@ -76,9 +151,9 @@ Access the application at: `http://127.0.0.1:5000`
   <li><strong>Score</strong>: Shows User Quizz Score Analysis in Proper Diagrams</li>
 </ul>
 
-<h2>⭐ Usage Guide</h2>
+<h2>🧾 Usage Guide</h2>
 
-<h3>🧾 Admin Guide</h3>
+<h3>Admin:</h3>
 <ul>
   <li>Login with Admin Credentials so that they can add Tests.</li>
   <li>Create new subjects with descriptions and qualification levels.</li>
@@ -88,7 +163,7 @@ Access the application at: `http://127.0.0.1:5000`
   <li>Set time duration and remarks.</li>
 </ul>
 
-<h3>🧾 User Guide</h3>
+<h3>User:</h3>
 <ul>
   <li>Sign up with email and password and verify your email.</li>
   <li>Browse available quizzes based on your qualification.</li>
@@ -140,3 +215,4 @@ Access the application at: `http://127.0.0.1:5000`
 <h3>Quiz Editor</h3>
 
 ![image](https://github.com/user-attachments/assets/3370ff8f-b273-47b3-925b-d32e90eca157)
+
