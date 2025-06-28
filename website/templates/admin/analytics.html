@@ -1,126 +1,264 @@
-{% extends "base/admin_base.html" %}
-
-{% block content %}
+{% extends "base/admin_base.html" %} {% block content %}
 <div class="container mt-4">
-    <h2>Admin Analytics</h2>
+  <h2>Admin Analytics</h2>
 
-    <div class="row">
-        <div class="col-md-3">
-            <div class="card text-white bg-primary mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Total Students</h5>
-                    <p class="card-text" id="total_students">0</p>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card text-white bg-primary mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Total Students</h5>
+          <p class="card-text" id="total_students">0</p>
         </div>
-        <div class="col-md-3">
-            <div class="card text-white bg-success mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Total Subjects</h5>
-                    <p class="card-text" id="total_subjects">0</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card text-white bg-warning mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Total Quizzes</h5>
-                    <p class="card-text" id="total_quizzes">0</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="card text-white bg-danger mb-3">
-                <div class="card-body">
-                    <h5 class="card-title">Active Quizzes</h5>
-                    <p class="card-text" id="active_quizzes">0</p>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-
-    <div class="row">
-        <div class="col-md-4">
-            <h5>Subject Performance (Avg. Score per Subject)</h5>
-            <canvas id="subjectPerformanceChart" style="max-height: 250px;"></canvas>
+    <div class="col-md-3">
+      <div class="card text-white bg-success mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Total Subjects</h5>
+          <p class="card-text" id="total_subjects">0</p>
         </div>
-        <div class="col-md-4">
-            <h5>Qualification Distribution of Students</h5>
-            <canvas id="qualificationDistributionChart" style="max-height: 250px;"></canvas>
-        </div>
-        <div class="col-md-4">
-            <h5>Score Distribution Among Students</h5>
-            <canvas id="performanceDistributionChart" style="max-height: 250px;"></canvas>
-        </div>
+      </div>
     </div>
+    <div class="col-md-3">
+      <div class="card text-white bg-warning mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Total Quizzes</h5>
+          <p class="card-text" id="total_quizzes">0</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card text-white bg-danger mb-3">
+        <div class="card-body">
+          <h5 class="card-title">Active Quizzes</h5>
+          <p class="card-text" id="active_quizzes">0</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <h3 class="mt-5">User Performance Analytics</h3>
-    <table class="table mt-4">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Qualification</th>
-                <th>Average Score</th>
-                <th>Quiz Attempts</th>
-            </tr>
-        </thead>
-        <tbody id="userPerformanceTableBody"></tbody>
-    </table>
+  <div class="row">
+    <div class="col-md-4">
+      <h5>Subject Performance (Avg. Score per Subject)</h5>
+      <canvas id="subjectPerformanceChart" style="max-height: 250px"></canvas>
+    </div>
+    <div class="col-md-4">
+      <h5>Qualification Distribution of Students</h5>
+      <canvas
+        id="qualificationDistributionChart"
+        style="max-height: 250px"
+      ></canvas>
+    </div>
+    <div class="col-md-4">
+      <h5>Score Distribution Among Students</h5>
+      <canvas
+        id="performanceDistributionChart"
+        style="max-height: 250px"
+      ></canvas>
+    </div>
+  </div>
+
+  <!-- New charts row -->
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <h5>Quizzes Taken Over Time</h5>
+      <canvas id="quizzesTakenChart" style="max-height: 250px"></canvas>
+    </div>
+    <div class="col-md-4">
+      <h5>Most Used Subjects</h5>
+      <canvas id="mostUsedSubjectsChart" style="max-height: 250px"></canvas>
+    </div>
+    <div class="col-md-4">
+      <h5>Quiz Results Distribution</h5>
+      <canvas id="quizResultsChart" style="max-height: 250px"></canvas>
+    </div>
+  </div>
+
+  <h3 class="mt-5">User Performance Analytics</h3>
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Qualification</th>
+        <th>Average Score</th>
+        <th>Quiz Attempts</th>
+      </tr>
+    </thead>
+    <tbody id="userPerformanceTableBody"></tbody>
+  </table>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    fetch('/admin/analytics/data')
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById('total_students').innerText = data.total_students;
-            document.getElementById('total_subjects').innerText = data.total_subjects;
-            document.getElementById('total_quizzes').innerText = data.total_quizzes;
-            document.getElementById('active_quizzes').innerText = data.active_quizzes;
+  fetch("/admin/analytics/data")
+    .then((response) => response.json())
+    .then((data) => {
+      document.getElementById("total_students").innerText = data.total_students;
+      document.getElementById("total_subjects").innerText = data.total_subjects;
+      document.getElementById("total_quizzes").innerText = data.total_quizzes;
+      document.getElementById("active_quizzes").innerText = data.active_quizzes;
 
-            new Chart(document.getElementById('subjectPerformanceChart'), {
-                type: 'bar',
-                data: {
-                    labels: data.subject_performance.map(item => item.subject),
-                    datasets: [{
-                        label: 'Average Score',
-                        data: data.subject_performance.map(item => item.avg_score),
-                        backgroundColor: 'rgba(54, 162, 235, 0.5)'
-                    }]
-                },
-                options: { maintainAspectRatio: false }
-            });
+      // Existing charts
+      new Chart(document.getElementById("subjectPerformanceChart"), {
+        type: "bar",
+        data: {
+          labels: data.subject_performance.map((item) => item.subject),
+          datasets: [
+            {
+              label: "Average Score",
+              data: data.subject_performance.map((item) => item.avg_score),
+              backgroundColor: "rgba(54, 162, 235, 0.5)",
+            },
+          ],
+        },
+        options: { maintainAspectRatio: false },
+      });
 
-            new Chart(document.getElementById('qualificationDistributionChart'), {
-                type: 'pie',
-                data: {
-                    labels: data.qualification_distribution.map(item => item.qualification),
-                    datasets: [{
-                        data: data.qualification_distribution.map(item => item.count),
-                        backgroundColor: ['#ff6384', '#36a2eb', '#ffce56']
-                    }]
-                },
-                options: { maintainAspectRatio: false }
-            });
+      new Chart(document.getElementById("qualificationDistributionChart"), {
+        type: "pie",
+        data: {
+          labels: data.qualification_distribution.map(
+            (item) => item.qualification
+          ),
+          datasets: [
+            {
+              data: data.qualification_distribution.map((item) => item.count),
+              backgroundColor: ["#ff6384", "#36a2eb", "#ffce56"],
+            },
+          ],
+        },
+        options: { maintainAspectRatio: false },
+      });
 
-            new Chart(document.getElementById('performanceDistributionChart'), {
-                type: 'bar',
-                data: {
-                    labels: data.performance_distribution.map(item => item.score),
-                    datasets: [{
-                        label: 'Students Count',
-                        data: data.performance_distribution.map(item => item.count),
-                        backgroundColor: 'rgba(255, 99, 132, 0.5)'
-                    }]
-                },
-                options: { maintainAspectRatio: false }
-            });
+      new Chart(document.getElementById("performanceDistributionChart"), {
+        type: "bar",
+        data: {
+          labels: data.performance_distribution.map((item) => item.score),
+          datasets: [
+            {
+              label: "Students Count",
+              data: data.performance_distribution.map((item) => item.count),
+              backgroundColor: "rgba(255, 99, 132, 0.5)",
+            },
+          ],
+        },
+        options: { maintainAspectRatio: false },
+      });
 
-            const userTable = document.getElementById('userPerformanceTableBody');
-            userTable.innerHTML = "";
-            data.user_performance.forEach(user => {
-                let row = `
+      // New chart 1: Quizzes Taken Over Time (Line chart)
+      if (data.quizzes_over_time) {
+        new Chart(document.getElementById("quizzesTakenChart"), {
+          type: "line",
+          data: {
+            labels: data.quizzes_over_time.map((item) => item.date),
+            datasets: [
+              {
+                label: "Number of Quizzes",
+                data: data.quizzes_over_time.map((item) => item.count),
+                borderColor: "rgba(75, 192, 192, 1)",
+                backgroundColor: "rgba(75, 192, 192, 0.2)",
+                tension: 0.1,
+                fill: true,
+              },
+            ],
+          },
+          options: {
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+      } else {
+        document.getElementById("quizzesTakenChart").getContext("2d").font =
+          "14px Arial";
+        document
+          .getElementById("quizzesTakenChart")
+          .getContext("2d")
+          .fillText("No data available", 10, 50);
+      }
+
+      // New chart 2: Most Used Subjects (Bar chart)
+      if (data.most_used_subjects) {
+        new Chart(document.getElementById("mostUsedSubjectsChart"), {
+          type: "bar",
+          data: {
+            labels: data.most_used_subjects.map((item) => item.subject),
+            datasets: [
+              {
+                label: "Number of Attempts",
+                data: data.most_used_subjects.map((item) => item.attempts),
+                backgroundColor: "rgba(153, 102, 255, 0.5)",
+                borderColor: "rgba(153, 102, 255, 1)",
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            maintainAspectRatio: false,
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          },
+        });
+      } else {
+        document.getElementById("mostUsedSubjectsChart").getContext("2d").font =
+          "14px Arial";
+        document
+          .getElementById("mostUsedSubjectsChart")
+          .getContext("2d")
+          .fillText("No data available", 10, 50);
+      }
+
+      // New chart 3: Quiz Results Distribution (Pie chart)
+      if (data.quiz_results_distribution) {
+        new Chart(document.getElementById("quizResultsChart"), {
+          type: "pie",
+          data: {
+            labels: ["Pass", "Fail", "Average"],
+            datasets: [
+              {
+                data: [
+                  data.quiz_results_distribution.pass || 0,
+                  data.quiz_results_distribution.fail || 0,
+                  data.quiz_results_distribution.average || 0,
+                ],
+                backgroundColor: [
+                  "rgba(75, 192, 192, 0.5)",
+                  "rgba(255, 99, 132, 0.5)",
+                  "rgba(255, 206, 86, 0.5)",
+                ],
+                borderColor: [
+                  "rgba(75, 192, 192, 1)",
+                  "rgba(255, 99, 132, 1)",
+                  "rgba(255, 206, 86, 1)",
+                ],
+                borderWidth: 1,
+              },
+            ],
+          },
+          options: {
+            maintainAspectRatio: false,
+          },
+        });
+      } else {
+        document.getElementById("quizResultsChart").getContext("2d").font =
+          "14px Arial";
+        document
+          .getElementById("quizResultsChart")
+          .getContext("2d")
+          .fillText("No data available", 10, 50);
+      }
+
+      const userTable = document.getElementById("userPerformanceTableBody");
+      userTable.innerHTML = "";
+      data.user_performance.forEach((user) => {
+        let row = `
                     <tr>
                         <td>${user.name}</td>
                         <td>${user.email}</td>
@@ -129,9 +267,9 @@
                         <td>${user.quiz_attempts}</td>
                     </tr>
                 `;
-                userTable.innerHTML += row;
-            });
-        })
-        .catch(error => console.error("Error fetching analytics data:", error));
+        userTable.innerHTML += row;
+      });
+    })
+    .catch((error) => console.error("Error fetching analytics data:", error));
 </script>
 {% endblock %}
