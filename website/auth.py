@@ -79,7 +79,7 @@ def signup():
             print(f"Mock email: {msg.subject} sent to {msg.recipients}")
             # msg.send()
 
-            flash('Verification code sent! Please check your email.', category='info')
+            flash('Verification code sent! Please check your email.', category='success')
             return redirect(url_for('auth.verify_email', email=email))
 
     return render_template('auth/sign-up.html', user=current_user)
@@ -123,7 +123,7 @@ def resend_verification_code():
         )
         msg.send()
 
-        flash('A new verification code has been sent to your email.', category='info')
+        flash('A new verification code has been sent to your email.', category='success')
         return redirect(url_for('auth.verify_email', email=email))
     
     flash('User not found or already verified.', category='error')

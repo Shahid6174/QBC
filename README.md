@@ -10,6 +10,7 @@
 
 **QBC (Quiz-Based Challenge)** is a web app designed to boost learning through structured, subject- and chapter-wise quizzes. It enables effective preparation with analytics, an anti-cheat environment, and both admin and user features.
 
+
 ---
 
 ## ⭐ Features
@@ -126,6 +127,20 @@ python app.py
 
 Then visit: http://127.0.0.1:5000
 
+<h2>⭐Technical Stack</h2>
+<ul>
+  <li><strong>Backend</strong>: Python Flask</li>
+  <li><strong>Database</strong>: SQLAlchemy with SQLite</li>
+  <li><strong>Authentication</strong>: Flask-Login</li>
+  <li><strong>Email Services</strong>: Flask-Mailman</li>
+  <li><strong>Frontend</strong>: Bootstrap 5, HTML, CSS, JavaScript</li>
+  <li><strong>Charts</strong>: Chart.js for analytics visualization</li>
+</ul>
+
+<h2>⭐Installation and Setup</h2>
+
+For more detailed installation instructions and usage guide, please check the [Installation & Usage Guide](docs/installation.md).
+
 <h2>📊 Database Models</h2>
 <ul>
   <li><strong>User</strong>: Stores user information, authentication details, and verification status</li>
@@ -165,25 +180,26 @@ Then visit: http://127.0.0.1:5000
   <li>Monitor qualification distribution and subject performance.</li>
 </ul>
 
-
 <h1>📱Project Screenshots</h1>
 <h2>User Module</h2>
 
 <h3>User Dashboard</h3>
 
 ![image](https://github.com/user-attachments/assets/49e883e3-61ab-44fc-b674-91d886c36c0c)
+
 <h3>User Analytics</h3>
 
 ![image](https://github.com/user-attachments/assets/e2633113-0b0f-42ca-b739-3d99cc504720)
+
 <h3>User Quiz Mode</h3>
 
 ![image](https://github.com/user-attachments/assets/efcb9cee-529f-4a46-aa63-9f2f80b274ce)
-
 
 <h2>Admin Module</h2>
 <h3>Admin Dashboard</h3>
 
 ![image](https://github.com/user-attachments/assets/4eaa6ddb-41e8-49a2-b470-111dab580d13)
+
 <h3>Admin Analytics</h3>
 
 ![image](https://github.com/user-attachments/assets/e216f10d-7701-43ad-8f31-45cb4c6918c1)
@@ -191,42 +207,12 @@ Then visit: http://127.0.0.1:5000
 <h3>Admin Subjects Panel</h3>
 
 ![image](https://github.com/user-attachments/assets/524afd31-bf70-472e-bfe8-19015ac7e8ae)
+
 <h3>Subject's Quizzes Page</h3>
 
 ![image](https://github.com/user-attachments/assets/08fc819e-5e9a-49b0-9e76-2c3a5ae4599f)
+
 <h3>Quiz Editor</h3>
 
 ![image](https://github.com/user-attachments/assets/3370ff8f-b273-47b3-925b-d32e90eca157)
-
-## 🧠 Contributing
-
-1. Fork the repo
-
-2. Create a new branch:
-
-git checkout -b your-name-feature
-
-3. Make your changes, commit:
-
-4. git commit -m "Added feature xyz"
-
-5. Push & create a Pull Request 🚀
-
-## ⭐ Future Add-Ons
-
-<pre>🎯 1. Leaderboard
-Show top scorers per subject/quiz using a sortable table.
-
-🧠 2. Timed Quizzes
-Add countdown timer on quiz page. Auto-submit on timeout using JavaScript.
-
-🎲 3. Question Shuffling
-Randomize order of questions and options per user using Python + JS.
-
-📩 4. Send Score via Email
-Once quiz is submitted, send their result via email using Flask-Mailman (optional toggle).
-
-💬 5. Discussion or Feedback for Each Quiz
-Let users comment or give feedback after a quiz.</pre>
-
 

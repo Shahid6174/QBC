@@ -71,7 +71,7 @@
         <h2>Sign Up</h2>
         {% with messages = get_flashed_messages(with_categories=true) %}
         {% for category, message in messages %}
-        <p class="{{ category }}">{{ message }}</p>
+        {% include 'component/toast.html' %}
         {% endfor %}
         {% endwith %}
         <form method="POST">

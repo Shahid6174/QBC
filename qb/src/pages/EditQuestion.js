@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Form, Button, Container } from "react-bootstrap";
+// For Bootstrap components
+import { Container, Form, Button } from 'react-bootstrap';
+// For Chart.js
+import 'chart.js/auto';
+
 
 const EditQuestion = () => {
   const { questionId } = useParams();
